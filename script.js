@@ -23,29 +23,60 @@ document.addEventListener("DOMContentLoaded", () => {
   const toolsList = document.querySelector(".skills-list.tools");
   const backEndList = document.querySelector(".skills-list.back-end");
 
+  const allBurgerLayers = [topBun, middle, bottomBun];
+  const allSkillsLists = [frontEndList, toolsList, backEndList];
+
   function hideAllSkillsLists() {
-    frontEndList.classList.remove("show");
-    toolsList.classList.remove("show");
-    backEndList.classList.remove("show");
+    allSkillsLists.forEach((list) => {
+      list.classList.remove("show");
+      list.style.top = "";
+    });
   }
 
-  topBun.addEventListener("click", () => {
-    const isVisible = frontEndList.classList.contains("show");
-    hideAllSkillsLists();
-    if (!isVisible) frontEndList.classList.add("show");
-  });
+  function removeAllActiveStates() {
+    allBurgerLayers.forEach((layer) => {
+      layer.classList.remove("active", "slide-up", "slide-down");
+    });
+  }
 
-  middle.addEventListener("click", () => {
-    const isVisible = toolsList.classList.contains("show");
+  function handleBurgerClick(clickedLayer, targetList) {
+    removeAllActiveStates();
     hideAllSkillsLists();
-    if (!isVisible) toolsList.classList.add("show");
-  });
 
-  bottomBun.addEventListener("click", () => {
-    const isVisible = backEndList.classList.contains("show");
-    hideAllSkillsLists();
-    if (!isVisible) backEndList.classList.add("show");
-  });
+    const wasActive = clickedLayer.classList.contains("active");
+
+    if (!wasActive) {
+      clickedLayer.classList.add("active");
+
+      if (clickedLayer === topBun) {
+        clickedLayer.classList.add("slide-up");
+      } else if (clickedLayer === middle) {
+        topBun.classList.add("slide-up");
+        bottomBun.classList.add("slide-down");
+      } else if (clickedLayer === bottomBun) {
+        clickedLayer.classList.add("slide-down");
+      }
+
+      targetList.classList.add("show");
+
+      const clickedLayerRect = clickedLayer.getBoundingClientRect();
+      const skillsContainerRect = document
+        .querySelector(".skills-burger-container")
+        .getBoundingClientRect();
+
+      targetList.style.top = `${
+        clickedLayerRect.top - skillsContainerRect.top
+      }px`;
+    }
+  }
+
+  topBun.addEventListener("click", () =>
+    handleBurgerClick(topBun, frontEndList)
+  );
+  middle.addEventListener("click", () => handleBurgerClick(middle, toolsList));
+  bottomBun.addEventListener("click", () =>
+    handleBurgerClick(bottomBun, backEndList)
+  );
 
   const modeSwitch = document.getElementById("modeSwitch");
   const body = document.body;
