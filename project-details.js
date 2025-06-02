@@ -1,119 +1,272 @@
+const projectsData = [
+  {
+    id: "notesplay",
+    title: "NotesPlay",
+    shortDescription: "Secure Note-Taking App",
+    meta: "Android App Development",
+    description: `NotesPlay is a feature-rich Android application designed for secure and efficient note-taking. It allows users to create, read, update, and delete notes, with a focus on local storage for enhanced privacy. The intuitive UI/UX, built with Jetpack Compose, provides a seamless user experience, ensuring that your thoughts and ideas are always at your fingertips, safely stored on your device.`,
+    techStack: "Android, Kotlin, SQLite (Local Storage), Jetpack Compose",
+    thumbnailLogo: "images/app logo.png",
+    heroImage: "images/app_logo.png",
+    images: [
+      "images/app_logo.png",
+      "images/notesplay/notesplay_screenshot2.png",
+      "images/notesplay/notesplay_screenshot3.png",
+    ],
+    liveUrl: "#",
+    githubUrl: "https://github.com/yourusername/NotesPlay",
+    problemSolutionImpact: {
+      problem:
+        "Users need a reliable and private way to store notes locally without cloud reliance, ensuring data security.",
+      solution:
+        "Developed an Android app with SQLite for local storage, prioritizing user privacy through secure data handling and offline accessibility.",
+      impact:
+        "Enabled users to securely manage notes offline, significantly boosting their personal data control and providing a trustworthy alternative to cloud-based solutions.",
+    },
+  },
+  {
+    id: "donora",
+    title: "Donora",
+    shortDescription: "Blockchain-based Donation Platform",
+    meta: "Web3, Decentralized Applications",
+    description: `Donora is a decentralized donation platform built on blockchain technology. It ensures transparency and traceability of donations from donor to beneficiary. Leveraging Flask for the backend and Web3.py for blockchain interaction, it provides a secure and immutable record of every transaction, fostering trust and accountability in the philanthropic process and redefining how charitable giving is managed.`,
+    techStack:
+      "Python, Flask, Web3.py, HTML/CSS, JavaScript, Blockchain (Ethereum)",
+    thumbnailLogo: "images/donora.png",
+    heroImage: "images/donora/donora_hero.png",
+    images: [
+      "images/donora/donora_screenshot1.png",
+      "images/donora/donora_screenshot2.png",
+      "images/donora/donora_screenshot3.png",
+    ],
+    liveUrl: "#",
+    githubUrl: "https://github.com/yourusername/Donora",
+    problemSolutionImpact: {
+      problem:
+        "Lack of transparency in traditional donation systems often leads to donor distrust and inefficient fund allocation.",
+      solution:
+        "Implemented a blockchain platform for immutable, traceable donations, ensuring every transaction is publicly verifiable and secure.",
+      impact:
+        "Increased donor confidence and accountability in charitable giving, promoting more effective and trustworthy philanthropic endeavors globally.",
+    },
+  },
+];
+
 document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const projectId = urlParams.get("id");
-  const projectsData = {
-    notesplay: {
-      title: "NotesPlay",
-      heroImage: "images/notesplay-full-screen.png",
-      description: `NotesPlay is a native Android application developed using Kotlin, designed to revolutionize the way students and professionals manage their study notes. It offers robust features including typed note-taking, handwritten note capture, and advanced text extraction from images using Firebase ML Kit's Optical Character Recognition (OCR). This app significantly enhances active recall through its integrated quiz generation feature, converting notes into interactive assessments.
-                          <br><br>
-                          The core challenge was to provide a seamless note-taking experience while incorporating powerful machine learning capabilities for text extraction and intelligent quiz generation, all within a responsive and intuitive Android UI.`,
-      techStack: [
-        "Android",
-        "Kotlin",
-        "Firebase ML Kit",
-        "Local Storage",
-        "Jetpack Compose (if applicable)",
-      ],
-      githubLink: "https://github.com/Cizelle/NotesPlayy",
-      liveDemo: "Link to a demo video or play store (if applicable)",
-      features: [
-        "Typed & Handwritten Note Capture",
-        "OCR Text Extraction from Images",
-        "AI-powered Quiz Generation from Notes",
-        "Secure Local Storage for Data",
-      ],
-      problem:
-        "Students often struggle with organizing notes from various sources (typed, handwritten, images) and lack effective tools for active recall and self-assessment.",
-      solution:
-        "NotesPlay provides a centralized platform for diverse note formats, utilizing OCR for efficient content digitization and integrating a quiz generator to facilitate active learning and memory retention.",
-      impact:
-        "Streamlined note management, improved study efficiency through active recall, and simplified content digitization for users.",
-    },
-    donora: {
-      title: "Donora",
-      heroImage: "images/donora-full-screen.png",
-      description: `Donora is a groundbreaking decentralized platform built with Python, Flask, and blockchain technology, aimed at revolutionizing the organ donation and transplantation process. It provides a secure, transparent, and efficient system for managing donor and recipient information, ensuring real-time compatibility verification and immutable records powered by a custom blockchain implementation.
-                          <br><br>
-                          The primary goal was to overcome the inefficiencies and lack of trust inherent in traditional organ donation systems by leveraging decentralized ledger technology to enhance transparency and security.`,
-      techStack: [
-        "Python",
-        "Flask",
-        "Blockchain",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Web3.js (if applicable)",
-      ],
-      githubLink: "https://github.com/Cizelle/Donora",
-      liveDemo: "Link to a demo video or deployed site (if applicable)",
-      features: [
-        "Decentralized Donor/Recipient Registry",
-        "Real-time Compatibility Matching",
-        "Blockchain-backed Immutable Records",
-        "Enhanced Transparency and Security",
-      ],
-      problem:
-        "The traditional organ donation process suffers from transparency issues, inefficient record-keeping, and potential for fraud, leading to delays and mistrust.",
-      solution:
-        "Donora introduces a blockchain-based system that ensures tamper-proof records, automated compatibility checks, and a transparent ledger for all transactions, thereby increasing trust and efficiency.",
-      impact:
-        "Significant reduction in processing times for organ matching, increased trust among stakeholders, and a more secure and transparent system for organ donations.",
-    },
+  const modeSwitch = document.getElementById("modeSwitch");
+  const modeLabel = document.getElementById("modeLabel");
+
+  const setMode = (mode) => {
+    document.body.classList.remove("pixel-mode", "professional-mode");
+
+    if (mode === "pixel-mode") {
+      document.body.classList.add("pixel-mode");
+      modeLabel.textContent = "Professional Mode";
+    } else {
+      document.body.classList.add("professional-mode");
+      modeLabel.textContent = "Pixel Mode";
+    }
+    localStorage.setItem("mode", mode);
   };
 
-  const project = projectsData[projectId];
+  const storedMode = localStorage.getItem("mode");
+  if (storedMode) {
+    setMode(storedMode);
+    modeSwitch.checked = storedMode === "pixel-mode";
+  } else {
+    setMode("professional-mode");
+    modeSwitch.checked = false;
+  }
 
-  if (project) {
-    document.getElementById("detail-project-title").textContent = project.title;
-    document.getElementById(
+  modeSwitch.addEventListener("change", () => {
+    if (modeSwitch.checked) {
+      setMode("pixel-mode");
+    } else {
+      setMode("professional-mode");
+    }
+  });
+
+  const hamburger = document.querySelector(".hamburger");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      document.body.classList.toggle("mobile-nav-open");
+    });
+  }
+
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      document.body.classList.remove("mobile-nav-open");
+    });
+  });
+
+  if (document.body.id === "project-details-page") {
+    const projectThumbnailsContainer = document.getElementById(
+      "project-thumbnails-container"
+    );
+    const detailProjectTitle = document.getElementById("detail-project-title");
+    const detailProjectMeta = document.getElementById("detail-project-meta");
+    const detailProjectHero = document.getElementById("detail-project-hero");
+    const detailProjectDescription = document.getElementById(
       "detail-project-description"
-    ).innerHTML = `<p>${project.description}</p>`;
-
-    // Display tech stack
-    const techStackContainer = document.getElementById(
+    );
+    const detailProjectTechStack = document.getElementById(
       "detail-project-tech-stack"
     );
-    techStackContainer.innerHTML = "<h4>Technologies Used:</h4>";
-    const techList = document.createElement("ul");
-    project.techStack.forEach((tech) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = tech;
-      techList.appendChild(listItem);
-    });
-    techStackContainer.appendChild(techList);
-
-    const linksContainer = document.getElementById("detail-project-links");
-    linksContainer.innerHTML = "";
-    if (project.liveDemo) {
-      linksContainer.innerHTML += `<a href="${project.liveDemo}" target="_blank" class="button">Live Demo</a>`;
-    }
-    if (project.githubLink) {
-      linksContainer.innerHTML += `<a href="${project.githubLink}" target="_blank" class="button github-button">GitHub Repo</a>`;
-    }
-
-    const heroImageContainer = document.getElementById("detail-project-hero");
-    if (project.heroImage) {
-      heroImageContainer.innerHTML = `<img src="${project.heroImage}" alt="${project.title} Screenshot" class="detail-hero-image">`;
-    }
-
-    const psiContainer = document.getElementById(
+    const detailProjectLinks = document.getElementById("detail-project-links");
+    const detailProjectProblemSolutionImpact = document.getElementById(
       "detail-project-problem-solution-impact"
     );
-    if (project.problem) {
-      psiContainer.innerHTML += `<h4>The Problem:</h4><p>${project.problem}</p>`;
+    const backButton = document.querySelector(".back-to-projects-button");
+
+    if (backButton) {
+      backButton.addEventListener("click", () => {
+        window.location.href = "index.html#projects";
+      });
     }
-    if (project.solution) {
-      psiContainer.innerHTML += `<h4>My Solution:</h4><p>${project.solution}</p>`;
+
+    const displayProjectDetails = (project) => {
+      detailProjectTitle.textContent = project.title;
+      detailProjectMeta.textContent = project.meta;
+      detailProjectDescription.textContent = project.description;
+      detailProjectTechStack.textContent = `Technologies: ${project.techStack}`;
+
+      detailProjectHero.innerHTML = "";
+      const heroImg = document.createElement("img");
+      heroImg.src = project.heroImage;
+      heroImg.alt = project.title + " Hero Image";
+      detailProjectHero.appendChild(heroImg);
+
+      detailProjectLinks.innerHTML = "";
+      if (project.liveUrl && project.liveUrl !== "#") {
+        const liveLink = document.createElement("a");
+        liveLink.href = project.liveUrl;
+        liveLink.target = "_blank";
+        liveLink.classList.add("button", "primary-button");
+        liveLink.textContent = "View Live";
+        detailProjectLinks.appendChild(liveLink);
+      }
+      if (project.githubUrl && project.githubUrl !== "#") {
+        const githubLink = document.createElement("a");
+        githubLink.href = project.githubUrl;
+        githubLink.target = "_blank";
+        githubLink.classList.add("button", "secondary-button");
+        githubLink.textContent = "GitHub Repo";
+        detailProjectLinks.appendChild(githubLink);
+      }
+
+      detailProjectProblemSolutionImpact.innerHTML = `
+                <h3>Problem, Solution & Impact</h3>
+                <p><strong>Problem:</strong> ${project.problemSolutionImpact.problem}</p>
+                <p><strong>Solution:</strong> ${project.problemSolutionImpact.solution}</p>
+                <p><strong>Impact:</strong> ${project.problemSolutionImpact.impact}</p>
+            `;
+    };
+
+    const setActiveThumbnail = (projectId) => {
+      document.querySelectorAll(".project-thumbnail-card").forEach((card) => {
+        card.classList.remove("active");
+      });
+      const activeCard = document.querySelector(
+        `.project-thumbnail-card[data-project-id="${projectId}"]`
+      );
+      if (activeCard) {
+        activeCard.classList.add("active");
+      }
+    };
+
+    projectsData.forEach((project) => {
+      const thumbnailCard = document.createElement("div");
+      thumbnailCard.classList.add("project-thumbnail-card");
+      thumbnailCard.dataset.projectId = project.id;
+      thumbnailCard.innerHTML = `
+                <img src="${project.thumbnailLogo}" alt="${project.title} Logo" class="thumbnail-logo">
+                <span class="thumbnail-title">${project.title}</span>
+            `;
+      thumbnailCard.addEventListener("click", () => {
+        displayProjectDetails(project);
+        setActiveThumbnail(project.id);
+        history.pushState(
+          { id: project.id },
+          project.title,
+          `project-details.html?id=${project.id}`
+        );
+      });
+      projectThumbnailsContainer.appendChild(thumbnailCard);
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialProjectId = urlParams.get("id");
+
+    if (initialProjectId) {
+      const initialProject = projectsData.find(
+        (p) => p.id === initialProjectId
+      );
+      if (initialProject) {
+        displayProjectDetails(initialProject);
+        setActiveThumbnail(initialProject.id);
+      } else {
+        detailProjectTitle.textContent = "Project Not Found";
+        detailProjectDescription.textContent =
+          "The requested project could not be found. Please select from the list.";
+        detailProjectMeta.innerHTML =
+          detailProjectHero.innerHTML =
+          detailProjectTechStack.innerHTML =
+          detailProjectLinks.innerHTML =
+          detailProjectProblemSolutionImpact.innerHTML =
+            "";
+      }
+    } else if (projectsData.length > 0) {
+      displayProjectDetails(projectsData[0]);
+      setActiveThumbnail(projectsData[0].id);
+      history.replaceState(
+        { id: projectsData[0].id },
+        projectsData[0].title,
+        `project-details.html?id=${projectsData[0].id}`
+      );
+    } else {
+      detailProjectTitle.textContent = "No Projects Available";
+      detailProjectDescription.textContent =
+        "There are no projects to display.";
     }
-    if (project.impact) {
-      psiContainer.innerHTML += `<h4>The Impact:</h4><p>${project.impact}</p>`;
+
+    window.addEventListener("popstate", (event) => {
+      const state = event.state;
+      if (state && state.id) {
+        const project = projectsData.find((p) => p.id === state.id);
+        if (project) {
+          displayProjectDetails(project);
+          setActiveThumbnail(project.id);
+        }
+      } else {
+        if (projectsData.length > 0) {
+          displayProjectDetails(projectsData[0]);
+          setActiveThumbnail(projectsData[0].id);
+        } else {
+          detailProjectTitle.textContent = "No Projects Available";
+          detailProjectDescription.textContent =
+            "There are no projects to display.";
+        }
+      }
+    });
+  }
+
+  const body = document.body;
+  const savedMode = localStorage.getItem("portfolioMode");
+
+  if (savedMode === "pixel") {
+    body.classList.add("pixel-mode");
+    if (modeSwitch && modeLabel) {
+      modeSwitch.checked = true;
+      modeLabel.textContent = "Professional Mode";
     }
   } else {
-    document.getElementById("project-detail-content").innerHTML = `
-            <h2 class="section-heading">Project Not Found</h2>
-            <p>Sorry, the project you are looking for does not exist.</p>
-            <a href="index.html#projects" class="button">Back to Projects</a>
-        `;
+    body.classList.remove("pixel-mode");
+    if (modeSwitch && modeLabel) {
+      modeSwitch.checked = false;
+      modeLabel.textContent = "Pixel Mode";
+    }
   }
 });

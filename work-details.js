@@ -239,4 +239,22 @@ document.addEventListener("DOMContentLoaded", () => {
       modeLabel.textContent = "Pixel Mode";
     }
   }
+
+  if (modeSwitch) {
+    modeSwitch.addEventListener("change", () => {
+      if (modeSwitch.checked) {
+        body.classList.add("pixel-mode");
+        localStorage.setItem("portfolioMode", "pixel");
+        if (modeLabel) {
+          modeLabel.textContent = "Professional Mode";
+        }
+      } else {
+        body.classList.remove("pixel-mode");
+        localStorage.setItem("portfolioMode", "professional");
+        if (modeLabel) {
+          modeLabel.textContent = "Pixel Mode";
+        }
+      }
+    });
+  }
 });

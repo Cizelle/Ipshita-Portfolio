@@ -104,4 +104,40 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("portfolioMode", "professional");
     }
   });
+
+  const projectCards = document.querySelectorAll(".project-card");
+
+  projectCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const detailsUrl = card.dataset.detailsUrl;
+      if (detailsUrl) {
+        window.location.href = detailsUrl;
+      }
+    });
+  });
+
+  const sections = document.querySelectorAll(".common-section");
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  }, observerOptions);
+
+  const heroSection = document.getElementById("hero");
+  if (heroSection) {
+    heroSection.classList.add("is-visible");
+  }
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
 });
