@@ -240,6 +240,8 @@ header {
     transform: none !important;
     perspective: none !important;
     filter: none !important;
+    position: fixed;
+    z-index: 1000;
 }
 
 body, html {
@@ -253,6 +255,8 @@ body, html {
     align-items: center;
     gap: 10px;
     margin-left: auto;
+    position: relative;
+    z-index: 1001;
 }
 
 .switch {
