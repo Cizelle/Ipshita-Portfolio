@@ -14,7 +14,7 @@ const projectsData = [
       "images/notesplay/notesplay_screenshot3.png",
     ],
     liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/NotesPlay",
+    githubUrl: "https://github.com/Cizelle/NotesPlayy",
     problemSolutionImpact: {
       problem:
         "Users need a reliable and private way to store notes locally without cloud reliance, ensuring data security.",
@@ -40,7 +40,7 @@ const projectsData = [
       "images/donora/donora_screenshot3.png",
     ],
     liveUrl: "#",
-    githubUrl: "https://github.com/yourusername/Donora",
+    githubUrl: "https://github.com/Cizelle/Donora",
     problemSolutionImpact: {
       problem:
         "Lack of transparency in traditional donation systems often leads to donor distrust and inefficient fund allocation.",
