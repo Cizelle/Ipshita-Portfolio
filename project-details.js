@@ -4,14 +4,19 @@ const projectsData = [
     title: "NotesPlay",
     shortDescription: "Secure Note-Taking App",
     meta: "Android App Development",
+    type: "app",
     description: `NotesPlay is a feature-rich Android application designed for secure and efficient note-taking. It allows users to create, read, update, and delete notes, with a focus on local storage for enhanced privacy. The intuitive UI/UX, built with Jetpack Compose, provides a seamless user experience, ensuring that your thoughts and ideas are always at your fingertips, safely stored on your device.`,
     techStack: "Android, Kotlin, SQLite (Local Storage), Jetpack Compose",
     thumbnailLogo: "images/app logo.png",
-    heroImage: "images/app_logo.png",
-    images: [
-      "images/app_logo.png",
-      "images/notesplay/notesplay_screenshot2.png",
-      "images/notesplay/notesplay_screenshot3.png",
+    heroImage: "images/app logo.png",
+    processImages: [
+      "images/np (1).jpeg",
+      "images/np (2).jpeg",
+      "images/np (3).jpeg",
+      "images/np (4).jpeg",
+      "images/np (5).jpeg",
+      "images/np (6).jpeg",
+      "images/np (7).jpeg",
     ],
     liveUrl: "#",
     githubUrl: "https://github.com/Cizelle/NotesPlayy",
@@ -29,15 +34,19 @@ const projectsData = [
     title: "Donora",
     shortDescription: "Blockchain-based Donation Platform",
     meta: "Web3, Decentralized Applications",
+    type: "web",
     description: `Donora is a decentralized donation platform built on blockchain technology. It ensures transparency and traceability of donations from donor to beneficiary. Leveraging Flask for the backend and Web3.py for blockchain interaction, it provides a secure and immutable record of every transaction, fostering trust and accountability in the philanthropic process and redefining how charitable giving is managed.`,
     techStack:
       "Python, Flask, Web3.py, HTML/CSS, JavaScript, Blockchain (Ethereum)",
     thumbnailLogo: "images/donora.png",
-    heroImage: "images/donora/donora_hero.png",
-    images: [
-      "images/donora/donora_screenshot1.png",
-      "images/donora/donora_screenshot2.png",
-      "images/donora/donora_screenshot3.png",
+    heroImage: "images/donora.png",
+    processImages: [
+      "images/donor (1).png",
+      "images/donor (2).png",
+      "images/donor (3).png",
+      "images/donor (4).png",
+      "images/donor (5).png",
+      "images/donor (6).png",
     ],
     liveUrl: "#",
     githubUrl: "https://github.com/Cizelle/Donora",
@@ -58,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const setMode = (mode) => {
     document.body.classList.remove("pixel-mode", "professional-mode");
-
     if (mode === "pixel-mode") {
       document.body.classList.add("pixel-mode");
       modeLabel.textContent = "Professional Mode";
@@ -119,6 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const detailProjectProblemSolutionImpact = document.getElementById(
       "detail-project-problem-solution-impact"
     );
+    const workingProcessContainer = document.getElementById("working-process");
+
     const backButton = document.querySelector(".back-to-projects-button");
 
     if (backButton) {
@@ -163,6 +173,53 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>Solution:</strong> ${project.problemSolutionImpact.solution}</p>
                 <p><strong>Impact:</strong> ${project.problemSolutionImpact.impact}</p>
             `;
+
+      workingProcessContainer.innerHTML = "";
+
+      const heading = document.createElement("h3");
+      heading.className = "subsection-heading";
+      heading.textContent = "Working Process / Screenshots";
+      workingProcessContainer.appendChild(heading);
+
+      let imageContainer;
+      if (project.type === "app") {
+        imageContainer = document.createElement("div");
+        imageContainer.className = "app-image-scroller";
+      } else {
+        imageContainer = document.createElement("div");
+        imageContainer.className = "web-image-grid"; // <-- THIS LINE WAS UPDATED
+      }
+
+      if (project.processImages && project.processImages.length > 0) {
+        project.processImages.forEach((imageSrc) => {
+          const imgElement = document.createElement("img");
+          imgElement.src = imageSrc;
+          imgElement.alt = `Screenshot for ${project.title}`;
+
+          if (project.type === "app") {
+            const scrollItem = document.createElement("div");
+            scrollItem.className = "scroll-item";
+            scrollItem.appendChild(imgElement);
+            imageContainer.appendChild(scrollItem);
+          } else {
+            imageContainer.appendChild(imgElement);
+          }
+        });
+      } else {
+        const noImagesMessage = document.createElement("p");
+        noImagesMessage.textContent =
+          "No process images available for this project.";
+        imageContainer.appendChild(noImagesMessage);
+      }
+
+      workingProcessContainer.appendChild(imageContainer);
+
+      const currentMode = localStorage.getItem("mode");
+      if (currentMode === "pixel-mode") {
+        document.body.classList.add("pixel-mode");
+      } else {
+        document.body.classList.remove("pixel-mode");
+      }
     };
 
     const setActiveThumbnail = (projectId) => {
@@ -216,6 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
           detailProjectTechStack.innerHTML =
           detailProjectLinks.innerHTML =
           detailProjectProblemSolutionImpact.innerHTML =
+          workingProcessContainer.innerHTML =
             "";
       }
     } else if (projectsData.length > 0) {

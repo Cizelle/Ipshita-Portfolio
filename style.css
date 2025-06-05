@@ -1242,6 +1242,355 @@ input:checked + .slider:before {
     color: var(--text-professional);
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+footer {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.project-view-main {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.project-list-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: var(--sidebar-bg);
+}
+
+.project-detail-display {
+    flex-grow: 1;
+    padding: 2rem 4rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#detail-project-problem-solution-impact {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#detail-project-problem-solution-impact h3 {
+    font-size: 1.8rem;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#detail-project-problem-solution-impact p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.working-process {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.8s ease-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.working-process .subsection-heading {
+    font-size: 1.8rem;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.working-process .web-image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.working-process .web-image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: var(--light-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+    display: block;
+}
+
+.working-process .web-image-grid img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--hover-shadow);
+}
+
+.working-process .app-image-scroller {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5rem;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--card-bg);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.working-process .app-image-scroller .scroll-item {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 450px;
+    scroll-snap-align: center;
+    box-shadow: var(--light-shadow);
+    border-radius: 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.working-process .app-image-scroller .scroll-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+body.pixel-mode .project-detail-display {
+    padding: 1.5rem 3rem;
+}
+
+body.pixel-mode #detail-project-problem-solution-impact {
+    border: 3px solid var(--pixel-border-color);
+    box-shadow: none;
+    border-radius: 0;
+    background-color: var(--pixel-bg-light);
+    padding: 1.5rem;
+}
+
+body.pixel-mode #detail-project-problem-solution-impact h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: var(--pixel-text-color);
+    border-bottom: 2px dashed var(--pixel-accent-color);
+    text-shadow: 2px 2px var(--pixel-shadow-color);
+}
+
+body.pixel-mode .working-process {
+    border: 3px solid var(--pixel-border-color);
+    box-shadow: none;
+    border-radius: 0;
+    background-color: var(--pixel-bg-light);
+    padding: 1.5rem;
+}
+
+body.pixel-mode .working-process .subsection-heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: var(--pixel-text-color);
+    border-bottom: 2px dashed var(--pixel-accent-color);
+    text-shadow: 2px 2px var(--pixel-shadow-color);
+}
+
+body.pixel-mode .working-process .web-image-grid {
+    gap: 1.5rem;
+}
+
+body.pixel-mode .working-process .web-image-grid img {
+    border: 2px solid var(--pixel-border-color);
+    border-radius: 0;
+    box-shadow: 4px 4px 0px var(--pixel-shadow-color);
+    image-rendering: pixelated;
+}
+
+body.pixel-mode .working-process .web-image-grid img:hover {
+    transform: none;
+    box-shadow: 6px 6px 0px var(--pixel-hover-shadow-color);
+}
+
+body.pixel-mode .working-process .app-image-scroller {
+    scrollbar-color: var(--pixel-accent-color) var(--pixel-bg-light);
+}
+
+body.pixel-mode .working-process .app-image-scroller .scroll-item {
+    border: 2px solid var(--pixel-border-color);
+    border-radius: 0;
+    box-shadow: 4px 4px 0px var(--pixel-shadow-color);
+    background-color: var(--pixel-bg-dark);
+}
+
+body.pixel-mode .working-process .app-image-scroller .scroll-item img {
+    image-rendering: pixelated;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 992px) {
+    .project-list-sidebar {
+        width: 220px;
+        padding: 1.5rem;
+    }
+
+    .project-detail-display {
+        padding: 1.5rem 2rem;
+    }
+
+    .working-process .app-image-scroller .scroll-item {
+        width: 70vw;
+        max-width: 300px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-view-main {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .project-list-sidebar {
+        width: 100%;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .project-detail-display {
+        padding: 1.5rem;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .working-process {
+        padding: 1.5rem;
+    }
+
+    .working-process .subsection-heading {
+        font-size: 1.6rem;
+    }
+
+    .working-process .web-image-grid {
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .working-process .app-image-scroller {
+        padding: 0.5rem;
+    }
+
+    .working-process .app-image-scroller .scroll-item {
+        width: 85vw;
+        height: 400px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-list-sidebar {
+        padding: 1rem;
+    }
+    .project-detail-display {
+        padding: 1rem;
+    }
+
+    #detail-project-problem-solution-impact {
+        padding: 1.5rem;
+    }
+
+    #detail-project-problem-solution-impact h3 {
+        font-size: 1.5rem;
+    }
+
+    .working-process {
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+
+    .working-process .subsection-heading {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .working-process .app-image-scroller .scroll-item {
+        width: 90vw;
+        height: 350px;
+    }
+
+    body.pixel-mode .project-detail-display {
+        padding: 1rem;
+    }
+}
+
+.backButton {
+    display: inline-block;
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.backButton:hover {
+    color: var(--accent-color);
+}
+
 footer {
     text-align: center;
     padding: 1.5rem 5%;
