@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         imageContainer.className = "app-image-scroller";
       } else {
         imageContainer = document.createElement("div");
-        imageContainer.className = "web-image-grid"; // <-- THIS LINE WAS UPDATED
+        imageContainer.className = "web-image-grid";
       }
 
       if (project.processImages && project.processImages.length > 0) {
