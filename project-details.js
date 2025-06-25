@@ -59,6 +59,28 @@ const projectsData = [
         "Increased donor confidence and accountability in charitable giving, promoting more effective and trustworthy philanthropic endeavors globally.",
     },
   },
+  {
+    id: "filevault",
+    title: "File Vault",
+    shortDescription: "Secure link generator",
+    meta: "Python",
+    type: "web",
+    description: `File Vault allows users to upload a file, which then generates a unique download link that can only be used once. After the first successful download, the link becomes invalid, ensuring secure and time-sensitive file delivery.`,
+    techStack: "Python Development",
+    thumbnailLogo: "images/fileVault.png",
+    heroImage: "images/fileVault.png",
+    processImages: [],
+    liveUrl: "#",
+    githubUrl: "https://github.com/Cizelle/FileVault",
+    problemSolutionImpact: {
+      problem:
+        "Standard file-sharing links stay active indefinitely, leading to risks like unauthorized access, accidental reshares, or multiple unwanted downloads.",
+      solution:
+        "This Python project allows users to upload a file and generate a unique, one-time-use download link. After the first download, the link automatically expires, preventing further access.",
+      impact:
+        "Improves data security, access control, and user trust by ensuring files are downloaded only once and by the intended recipient.",
+    },
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
