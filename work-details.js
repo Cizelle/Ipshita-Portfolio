@@ -72,6 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
           src: "images/victors2.jpeg",
           alt: "Victors Club Event",
         },
+        {
+          src: "images/victors_cert.png",
+          alt: "Victors Club Certificate",
+        },
       ],
     },
     {
