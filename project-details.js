@@ -84,54 +84,6 @@ const projectsData = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-  const modeSwitch = document.getElementById("modeSwitch");
-  const modeLabel = document.getElementById("modeLabel");
-
-  const setMode = (mode) => {
-    document.body.classList.remove("pixel-mode", "professional-mode");
-    if (mode === "pixel-mode") {
-      document.body.classList.add("pixel-mode");
-      modeLabel.textContent = "Professional Mode";
-    } else {
-      document.body.classList.add("professional-mode");
-      modeLabel.textContent = "Pixel Mode";
-    }
-    localStorage.setItem("mode", mode);
-  };
-
-  const storedMode = localStorage.getItem("mode");
-  if (storedMode) {
-    setMode(storedMode);
-    modeSwitch.checked = storedMode === "pixel-mode";
-  } else {
-    setMode("professional-mode");
-    modeSwitch.checked = false;
-  }
-
-  modeSwitch.addEventListener("change", () => {
-    if (modeSwitch.checked) {
-      setMode("pixel-mode");
-    } else {
-      setMode("professional-mode");
-    }
-  });
-
-  const hamburger = document.querySelector(".hamburger");
-  const mobileNav = document.querySelector(".mobile-nav");
-
-  if (hamburger) {
-    hamburger.addEventListener("click", () => {
-      document.body.classList.toggle("mobile-nav-open");
-    });
-  }
-
-  const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
-  mobileNavLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      document.body.classList.remove("mobile-nav-open");
-    });
-  });
-
   if (document.body.id === "project-details-page") {
     const projectThumbnailsContainer = document.getElementById(
       "project-thumbnails-container"
@@ -190,11 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       detailProjectProblemSolutionImpact.innerHTML = `
-                <h3>Problem, Solution & Impact</h3>
-                <p><strong>Problem:</strong> ${project.problemSolutionImpact.problem}</p>
-                <p><strong>Solution:</strong> ${project.problemSolutionImpact.solution}</p>
-                <p><strong>Impact:</strong> ${project.problemSolutionImpact.impact}</p>
-            `;
+                    <h3>Problem, Solution & Impact</h3>
+                    <p><strong>Problem:</strong> ${project.problemSolutionImpact.problem}</p>
+                    <p><strong>Solution:</strong> ${project.problemSolutionImpact.solution}</p>
+                    <p><strong>Impact:</strong> ${project.problemSolutionImpact.impact}</p>
+                `;
 
       workingProcessContainer.innerHTML = "";
 
@@ -235,13 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       workingProcessContainer.appendChild(imageContainer);
-
-      const currentMode = localStorage.getItem("mode");
-      if (currentMode === "pixel-mode") {
-        document.body.classList.add("pixel-mode");
-      } else {
-        document.body.classList.remove("pixel-mode");
-      }
     };
 
     const setActiveThumbnail = (projectId) => {
@@ -261,9 +206,9 @@ document.addEventListener("DOMContentLoaded", () => {
       thumbnailCard.classList.add("project-thumbnail-card");
       thumbnailCard.dataset.projectId = project.id;
       thumbnailCard.innerHTML = `
-                <img src="${project.thumbnailLogo}" alt="${project.title} Logo" class="thumbnail-logo">
-                <span class="thumbnail-title">${project.title}</span>
-            `;
+                    <img src="${project.thumbnailLogo}" alt="${project.title} Logo" class="thumbnail-logo">
+                    <span class="thumbnail-title">${project.title}</span>
+                `;
       thumbnailCard.addEventListener("click", () => {
         displayProjectDetails(project);
         setActiveThumbnail(project.id);
@@ -331,22 +276,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-  }
-
-  const body = document.body;
-  const savedMode = localStorage.getItem("portfolioMode");
-
-  if (savedMode === "pixel") {
-    body.classList.add("pixel-mode");
-    if (modeSwitch && modeLabel) {
-      modeSwitch.checked = true;
-      modeLabel.textContent = "Professional Mode";
-    }
-  } else {
-    body.classList.remove("pixel-mode");
-    if (modeSwitch && modeLabel) {
-      modeSwitch.checked = false;
-      modeLabel.textContent = "Pixel Mode";
-    }
   }
 });

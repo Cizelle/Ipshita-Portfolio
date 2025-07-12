@@ -223,42 +223,4 @@ document.addEventListener("DOMContentLoaded", () => {
       inline: "center",
     });
   }
-
-  const body = document.body;
-  const savedMode = localStorage.getItem("portfolioMode");
-
-  const modeSwitch = document.getElementById("modeSwitch");
-  const modeLabel = document.getElementById("modeLabel");
-
-  if (savedMode === "pixel") {
-    body.classList.add("pixel-mode");
-    if (modeSwitch && modeLabel) {
-      modeSwitch.checked = true;
-      modeLabel.textContent = "Professional Mode";
-    }
-  } else {
-    body.classList.remove("pixel-mode");
-    if (modeSwitch && modeLabel) {
-      modeSwitch.checked = false;
-      modeLabel.textContent = "Pixel Mode";
-    }
-  }
-
-  if (modeSwitch) {
-    modeSwitch.addEventListener("change", () => {
-      if (modeSwitch.checked) {
-        body.classList.add("pixel-mode");
-        localStorage.setItem("portfolioMode", "pixel");
-        if (modeLabel) {
-          modeLabel.textContent = "Professional Mode";
-        }
-      } else {
-        body.classList.remove("pixel-mode");
-        localStorage.setItem("portfolioMode", "professional");
-        if (modeLabel) {
-          modeLabel.textContent = "Pixel Mode";
-        }
-      }
-    });
-  }
 });

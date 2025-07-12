@@ -1,20 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const mobileNav = document.querySelector(".mobile-nav");
-  const navLinks = document.querySelectorAll(".mobile-nav a");
-
-  hamburger.addEventListener("click", () => {
-    mobileNav.classList.toggle("active");
-    hamburger.classList.toggle("open");
-  });
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileNav.classList.remove("active");
-      hamburger.classList.remove("open");
-    });
-  });
-
   const topBun = document.querySelector(".burger-top-bun");
   const middle = document.querySelector(".burger-middle");
   const bottomBun = document.querySelector(".burger-bottom-bun");
@@ -39,74 +23,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function handleBurgerClick(clickedLayer, targetList) {
-    removeAllActiveStates();
-    hideAllSkillsLists();
+  if (topBun && middle && bottomBun) {
+    function handleBurgerClick(clickedLayer, targetList) {
+      removeAllActiveStates();
+      hideAllSkillsLists();
 
-    const wasActive = clickedLayer.classList.contains("active");
+      const wasActive = clickedLayer.classList.contains("active");
 
-    if (!wasActive) {
-      clickedLayer.classList.add("active");
+      if (!wasActive) {
+        clickedLayer.classList.add("active");
 
-      if (clickedLayer === topBun) {
-        clickedLayer.classList.add("slide-up");
-      } else if (clickedLayer === middle) {
-        topBun.classList.add("slide-up");
-        bottomBun.classList.add("slide-down");
-      } else if (clickedLayer === bottomBun) {
-        clickedLayer.classList.add("slide-down");
+        if (clickedLayer === topBun) {
+          clickedLayer.classList.add("slide-up");
+        } else if (clickedLayer === middle) {
+          topBun.classList.add("slide-up");
+          bottomBun.classList.add("slide-down");
+        } else if (clickedLayer === bottomBun) {
+          clickedLayer.classList.add("slide-down");
+        }
+
+        targetList.classList.add("show");
+
+        const clickedLayerRect = clickedLayer.getBoundingClientRect();
+        const skillsContainer = document.querySelector(
+          ".skills-burger-container"
+        );
+
+        if (skillsContainer) {
+          const skillsContainerRect = skillsContainer.getBoundingClientRect();
+          targetList.style.top = `${
+            clickedLayerRect.top - skillsContainerRect.top
+          }px`;
+        }
       }
-
-      targetList.classList.add("show");
-
-      const clickedLayerRect = clickedLayer.getBoundingClientRect();
-      const skillsContainerRect = document
-        .querySelector(".skills-burger-container")
-        .getBoundingClientRect();
-
-      targetList.style.top = `${
-        clickedLayerRect.top - skillsContainerRect.top
-      }px`;
     }
-  }
 
-  topBun.addEventListener("click", () =>
-    handleBurgerClick(topBun, frontEndList)
-  );
-  middle.addEventListener("click", () => handleBurgerClick(middle, toolsList));
-  bottomBun.addEventListener("click", () =>
-    handleBurgerClick(bottomBun, backEndList)
-  );
+    topBun.addEventListener("click", () =>
+      handleBurgerClick(topBun, frontEndList)
+    );
+    middle.addEventListener("click", () =>
+      handleBurgerClick(middle, toolsList)
+    );
+    bottomBun.addEventListener("click", () =>
+      handleBurgerClick(bottomBun, backEndList)
+    );
+  }
 
   const modeSwitch = document.getElementById("modeSwitch");
   const body = document.body;
   const modeLabel = document.getElementById("modeLabel");
 
-  const savedMode = localStorage.getItem("portfolioMode");
-  if (savedMode === "pixel") {
-    body.classList.add("pixel-mode");
-    modeSwitch.checked = true;
-    modeLabel.textContent = "Professional Mode";
-  } else {
-    body.classList.remove("pixel-mode");
-    modeSwitch.checked = false;
-    modeLabel.textContent = "Pixel Mode";
-  }
-
-  modeSwitch.addEventListener("change", () => {
-    if (modeSwitch.checked) {
+  if (modeSwitch && body && modeLabel) {
+    const savedMode = localStorage.getItem("portfolioMode");
+    if (savedMode === "pixel") {
       body.classList.add("pixel-mode");
+      modeSwitch.checked = true;
       modeLabel.textContent = "Professional Mode";
-      localStorage.setItem("portfolioMode", "pixel");
     } else {
       body.classList.remove("pixel-mode");
+      modeSwitch.checked = false;
       modeLabel.textContent = "Pixel Mode";
-      localStorage.setItem("portfolioMode", "professional");
     }
-  });
+
+    modeSwitch.addEventListener("change", () => {
+      if (modeSwitch.checked) {
+        body.classList.add("pixel-mode");
+        modeLabel.textContent = "Professional Mode";
+        localStorage.setItem("portfolioMode", "pixel");
+      } else {
+        body.classList.remove("pixel-mode");
+        modeLabel.textContent = "Pixel Mode";
+        localStorage.setItem("portfolioMode", "professional");
+      }
+    });
+  }
 
   const projectCards = document.querySelectorAll(".project-card");
-
   projectCards.forEach((card) => {
     card.addEventListener("click", () => {
       const detailsUrl = card.dataset.detailsUrl;
@@ -115,29 +107,57 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+});
 
-  const sections = document.querySelectorAll(".common-section");
+const navLinks = document.querySelectorAll(".bottom-navbar a");
+const sections = document.querySelectorAll("section[id]");
 
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.2,
-  };
+if (navLinks.length > 0 && sections.length > 0) {
+  function setActiveLink() {
+    let currentActiveSectionId = "";
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+        currentActiveSectionId = section.id;
       }
     });
-  }, observerOptions);
 
-  const heroSection = document.getElementById("hero");
-  if (heroSection) {
-    heroSection.classList.add("is-visible");
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+    });
+
+    if (currentActiveSectionId) {
+      const correspondingLink = document.querySelector(
+        `.bottom-navbar a[href*="#${currentActiveSectionId}"]`
+      );
+      if (correspondingLink) {
+        correspondingLink.classList.add("active");
+      }
+    } else {
+      const homeLink = document.querySelector(
+        '.bottom-navbar a[href*="#hero"]'
+      );
+      if (homeLink) {
+        homeLink.classList.add("active");
+      }
+    }
   }
 
-  sections.forEach((section) => {
-    observer.observe(section);
+  window.addEventListener("scroll", setActiveLink);
+  document.addEventListener("DOMContentLoaded", setActiveLink);
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (link.hash && link.pathname === location.pathname) {
+        event.preventDefault();
+        document.querySelector(link.hash).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+      navLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+    });
   });
-});
+}
