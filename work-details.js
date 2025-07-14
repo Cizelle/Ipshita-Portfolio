@@ -6,28 +6,29 @@ document.addEventListener("DOMContentLoaded", () => {
       company: "Cognorise Infotech",
       role: "Java Developer",
       description: `
-                <p>During my Java Developer Internship at Cognorise Infotech, I was immersed in a dynamic environment where I honed my backend development skills. My responsibilities included designing and implementing robust APIs, optimizing database queries, and contributing to the overall architecture of scalable web applications.</p>
-                <p>I gained hands-on experience with Spring Boot, Hibernate, and various SQL/NoSQL databases. A key project involved developing a new module for inventory management, which led to a 15% reduction in data processing time. I also actively participated in code reviews and utilized Agile methodologies for iterative development.</p>
-            `,
+    <p>During my one-month Java Developer Internship, I focused on enhancing my proficiency in Java development through a series of practical assignments. I was tasked with completing five distinct projects, each designed to challenge my problem-solving abilities and improve code efficiency.</p>
+    <p>My responsibilities included developing Java-based solutions, optimizing their complexities, and ensuring proper version control by uploading completed work to GitHub. This experience provided a concentrated dive into practical Java application development and best practices for code management.</p>
+`,
       skills: `
-                <ul>
-                    <li>Java</li>
-                    <li>Spring Boot</li>
-                    <li>RESTful APIs</li>
-                    <li>SQL (PostgreSQL)</li>
-                    <li>Hibernate</li>
-                    <li>Git</li>
-                    <li>Agile Methodologies</li>
-                </ul>
-            `,
+    <ul>
+        <li>Java</li>
+        <li>Object-Oriented Programming (OOP)</li>
+        <li>Problem Solving</li>
+        <li>Algorithm Optimization</li>
+        <li>Git</li>
+        <li>GitHub</li>
+        <li>Version Control</li>
+    </ul>
+`,
       learnings: `
-                <ul>
-                    <li>Mastered practical application of Spring Boot for enterprise solutions.</li>
-                    <li>Understood the importance of database optimization for large datasets.</li>
-                    <li>Improved collaboration skills through daily stand-ups and code reviews.</li>
-                    <li>Learned to adapt quickly to new tech stacks and project requirements.</li>
-                </ul>
-            `,
+    <ul>
+        <li>Gained hands-on experience in solving practical coding challenges using Java.</li>
+        <li>Developed a deeper understanding of writing efficient and optimized Java code.</li>
+        <li>Mastered essential version control workflows with Git and GitHub.</li>
+        <li>Improved problem-solving techniques by tackling diverse programming tasks.</li>
+        <li>Understood the importance of code structure and complexity reduction in real-world applications.</li>
+    </ul>
+`,
       images: [
         {
           src: "images/cogno2.png",
@@ -42,27 +43,31 @@ document.addEventListener("DOMContentLoaded", () => {
       company: "Victors Club",
       role: "Board Lead",
       description: `
-                <p>As the Development and Innovation Board Lead at Victors Club, I spearheaded initiatives to foster creativity and technological growth among members. My role involved organizing workshops, mentoring junior developers, and overseeing the development of internal tools and projects.</p>
-                <p>I successfully launched a "Tech Challenge" series that engaged over 100 students and resulted in several innovative prototypes. I also managed a team of 5 developers on a club management system project, ensuring timely delivery and adherence to best practices. This experience significantly enhanced my leadership, project management, and mentorship abilities.</p>
-            `,
+    <p>My journey at Victors Club began as the Workshop and Training Lead, where I focused on empowering members through educational initiatives. Demonstrating strong leadership and a passion for community growth, I was subsequently promoted to Development and Innovation Board Lead.</p>
+    <p>In this expanded role, I spearheaded initiatives to foster creativity and technological advancement among members. My responsibilities included conceptualizing and hosting numerous workshops, hackathons, and various technical events and competitions. I also played a key role in mentoring junior developers and overseeing the development of internal tools.</p>
+    <p>Beyond technical oversight, I managed crucial logistical aspects, including overseeing Unstop listings and handling other operational management responsibilities for the board. This comprehensive experience significantly enhanced my leadership, event management, project coordination, and mentorship abilities within a dynamic community setting.</p>
+`,
       skills: `
-                <ul>
-                    <li>Project Management</li>
-                    <li>Team Leadership</li>
-                    <li>Mentorship</li>
-                    <li>Event Organization</li>
-                    <li>Strategic Planning</li>
-                    <li>Public Speaking</li>
-                </ul>
-            `,
+    <ul>
+        <li>Project Management</li>
+        <li>Team Leadership</li>
+        <li>Mentorship</li>
+        <li>Event Management & Organization</li>
+        <li>Strategic Planning</li>
+        <li>Public Speaking</li>
+        <li>Community Engagement</li>
+        <li>Platform Management (Unstop, etc.)</li>
+    </ul>
+`,
       learnings: `
-                <ul>
-                    <li>Developed strong leadership skills in a community setting.</li>
-                    <li>Improved ability to manage multiple projects concurrently.</li>
-                    <li>Gained insights into fostering innovation and engaging a tech community.</li>
-                    <li>Understood the nuances of effective team delegation and motivation.</li>
-                </ul>
-            `,
+    <ul>
+        <li>Successfully transitioned into a higher leadership role, demonstrating adaptability and increased responsibility.</li>
+        <li>Mastered the end-to-end process of planning, organizing, and executing large-scale technical events and competitions.</li>
+        <li>Gained hands-on experience in effective team leadership, delegation, and fostering innovation within a community.</li>
+        <li>Developed comprehensive project management skills, from technical oversight to logistical and platform management.</li>
+        <li>Enhanced mentorship and public speaking abilities through guiding and engaging diverse groups of students.</li>
+    </ul>
+`,
       images: [
         {
           src: "images/victors1.jpeg",
@@ -84,27 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
       company: "Google Developers Student Club",
       role: "Web Development Volunteer",
       description: `
-                <p>My volunteering experience with the Google Developers Student Club (GDSC) allowed me to contribute to community-driven web development projects. I primarily focused on building and maintaining the club's official website, ensuring it was user-friendly and showcased upcoming events and resources.</p>
-                <p>I worked with HTML, CSS, and JavaScript, gaining practical experience in frontend development and responsive design. I also assisted in teaching fundamental web development concepts to new members during workshops. This role provided a valuable opportunity to apply my skills in a collaborative, non-profit setting and engage with the broader developer community.</p>
-            `,
+        <p>My volunteering experience with the Google Developers Student Club (GDSC) allowed me to contribute to impactful community-driven web development initiatives. I primarily focused on the development and maintenance of the club's hackathon website, ensuring it was user-friendly and effectively showcased updates.</p>
+        <p>I gained practical experience in frontend development and responsive design using HTML, CSS, and JavaScript. Beyond website duties, I also provided technical support for various club events and hackathons, helping to ensure their smooth digital presence and operation. This role provided a valuable opportunity to apply my skills in a collaborative, non-profit setting and actively engage with the broader developer community.</p>
+    `,
       skills: `
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>Responsive Design</li>
-                    <li>Frontend Development</li>
-                    <li>Community Engagement</li>
-                </ul>
-            `,
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Responsive Design</li>
+            <li>Frontend Development</li>
+            <li>Website Maintenance</li>
+            <li>Community Engagement</li>
+            <li>Event Support</li>
+        </ul>
+    `,
+
       learnings: `
-                <ul>
-                    <li>Solidified foundational web development concepts through practical application.</li>
-                    <li>Learned to collaborate effectively on a shared codebase.</li>
-                    <li>Gained experience in creating user-friendly interfaces.</li>
-                    <li>Developed presentation skills by assisting in workshops.</li>
-                </ul>
-            `,
+        <ul>
+            <li>Solidified foundational web development concepts through practical application on a live club website.</li>
+            <li>Learned to collaborate effectively on a shared codebase within a community environment.</li>
+            <li>Gained experience in creating and maintaining user-friendly and responsive web interfaces.</li>
+            <li>Understood the importance of digital presence and support for community events and initiatives.</li>
+        </ul>
+    `,
       images: [
         {
           src: "images/gdsc1.jpeg",

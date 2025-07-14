@@ -81,6 +81,29 @@ const projectsData = [
         "Improves data security, access control, and user trust by ensuring files are downloaded only once and by the intended recipient.",
     },
   },
+  {
+    id: "devians",
+    title: "Devians",
+    shortDescription: "Accessible Learning & Career Platform",
+    meta: "Education",
+    type: "web",
+    description: `Devians is a full-stack web application designed to democratize access to education, skill development, and career growth tools. Users can sign up for free, build or enhance their resume, set personalized goals, and receive curated roadmaps based on their aspirations. The platform also facilitates mentorship by connecting learners with industry professionals, and offers progress tracking to keep users motivated and on track.`,
+    techStack: "React.js, Node.js, Express.js, MongoDB, Tailwind CSS",
+    thumbnailLogo: "images/logoDevian.png",
+    heroImage: "images/logoDevian.png",
+    processImages: [],
+    processVideoEmbedIframe: `<iframe width="560" height="315" src="https://www.youtube.com/embed/m_Xu3_LOMHY?si=58VyAkd-DW3KfSG8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+    liveUrl: "#",
+    githubUrl: "https://github.com/Cizelle/Devians",
+    problemSolutionImpact: {
+      problem:
+        "Many learners lack access to personalized educational guidance, career planning tools, and mentorship opportunities especially those from underserved communities.",
+      solution:
+        "Built a free platform that empowers users to create accounts, build professional resumes, get personalized learning roadmaps based on selected goals, and connect with mentors. Also includes a progress tracker to help users stay motivated.",
+      impact:
+        "Devians levels the playing field by making education, career planning, and mentorship accessible to all, helping users stay focused, skill up effectively, and pursue their goals with clarity and support.",
+    },
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -104,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const workingProcessContainer = document.getElementById("working-process");
 
     const backButton = document.querySelector(".back-to-projects-button");
-
     if (backButton) {
       backButton.addEventListener("click", () => {
         window.location.href = "index.html#projects";
@@ -142,51 +164,58 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       detailProjectProblemSolutionImpact.innerHTML = `
-                    <h3>Problem, Solution & Impact</h3>
-                    <p><strong>Problem:</strong> ${project.problemSolutionImpact.problem}</p>
-                    <p><strong>Solution:</strong> ${project.problemSolutionImpact.solution}</p>
-                    <p><strong>Impact:</strong> ${project.problemSolutionImpact.impact}</p>
-                `;
+        <h3>Problem, Solution & Impact</h3>
+        <p><strong>Problem:</strong> ${project.problemSolutionImpact.problem}</p>
+        <p><strong>Solution:</strong> ${project.problemSolutionImpact.solution}</p>
+        <p><strong>Impact:</strong> ${project.problemSolutionImpact.impact}</p>
+      `;
 
       workingProcessContainer.innerHTML = "";
 
       const heading = document.createElement("h3");
       heading.className = "subsection-heading";
-      heading.textContent = "Working Process / Screenshots";
+      heading.textContent = "Working Process";
       workingProcessContainer.appendChild(heading);
 
-      let imageContainer;
-      if (project.type === "app") {
-        imageContainer = document.createElement("div");
-        imageContainer.className = "app-image-scroller";
+      if (project.processVideoEmbedIframe) {
+        const videoWrapper = document.createElement("div");
+        videoWrapper.className = "video-wrapper";
+        videoWrapper.innerHTML = project.processVideoEmbedIframe;
+        workingProcessContainer.appendChild(videoWrapper);
       } else {
-        imageContainer = document.createElement("div");
-        imageContainer.className = "web-image-grid";
+        let imageContainer;
+        if (project.type === "app") {
+          imageContainer = document.createElement("div");
+          imageContainer.className = "app-image-scroller";
+        } else {
+          imageContainer = document.createElement("div");
+          imageContainer.className = "web-image-grid";
+        }
+
+        if (project.processImages && project.processImages.length > 0) {
+          project.processImages.forEach((imageSrc) => {
+            const imgElement = document.createElement("img");
+            imgElement.src = imageSrc;
+            imgElement.alt = `Screenshot for ${project.title}`;
+
+            if (project.type === "app") {
+              const scrollItem = document.createElement("div");
+              scrollItem.className = "scroll-item";
+              scrollItem.appendChild(imgElement);
+              imageContainer.appendChild(scrollItem);
+            } else {
+              imageContainer.appendChild(imgElement);
+            }
+          });
+        } else {
+          const noImagesMessage = document.createElement("p");
+          noImagesMessage.textContent =
+            "No process images available for this project.";
+          imageContainer.appendChild(noImagesMessage);
+        }
+
+        workingProcessContainer.appendChild(imageContainer);
       }
-
-      if (project.processImages && project.processImages.length > 0) {
-        project.processImages.forEach((imageSrc) => {
-          const imgElement = document.createElement("img");
-          imgElement.src = imageSrc;
-          imgElement.alt = `Screenshot for ${project.title}`;
-
-          if (project.type === "app") {
-            const scrollItem = document.createElement("div");
-            scrollItem.className = "scroll-item";
-            scrollItem.appendChild(imgElement);
-            imageContainer.appendChild(scrollItem);
-          } else {
-            imageContainer.appendChild(imgElement);
-          }
-        });
-      } else {
-        const noImagesMessage = document.createElement("p");
-        noImagesMessage.textContent =
-          "No process images available for this project.";
-        imageContainer.appendChild(noImagesMessage);
-      }
-
-      workingProcessContainer.appendChild(imageContainer);
     };
 
     const setActiveThumbnail = (projectId) => {
@@ -206,9 +235,9 @@ document.addEventListener("DOMContentLoaded", () => {
       thumbnailCard.classList.add("project-thumbnail-card");
       thumbnailCard.dataset.projectId = project.id;
       thumbnailCard.innerHTML = `
-                    <img src="${project.thumbnailLogo}" alt="${project.title} Logo" class="thumbnail-logo">
-                    <span class="thumbnail-title">${project.title}</span>
-                `;
+        <img src="${project.thumbnailLogo}" alt="${project.title} Logo" class="thumbnail-logo">
+        <span class="thumbnail-title">${project.title}</span>
+      `;
       thumbnailCard.addEventListener("click", () => {
         displayProjectDetails(project);
         setActiveThumbnail(project.id);
@@ -235,13 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
         detailProjectTitle.textContent = "Project Not Found";
         detailProjectDescription.textContent =
           "The requested project could not be found. Please select from the list.";
-        detailProjectMeta.innerHTML =
-          detailProjectHero.innerHTML =
-          detailProjectTechStack.innerHTML =
-          detailProjectLinks.innerHTML =
-          detailProjectProblemSolutionImpact.innerHTML =
-          workingProcessContainer.innerHTML =
-            "";
       }
     } else if (projectsData.length > 0) {
       displayProjectDetails(projectsData[0]);
@@ -264,15 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (project) {
           displayProjectDetails(project);
           setActiveThumbnail(project.id);
-        }
-      } else {
-        if (projectsData.length > 0) {
-          displayProjectDetails(projectsData[0]);
-          setActiveThumbnail(projectsData[0].id);
-        } else {
-          detailProjectTitle.textContent = "No Projects Available";
-          detailProjectDescription.textContent =
-            "There are no projects to display.";
         }
       }
     });
