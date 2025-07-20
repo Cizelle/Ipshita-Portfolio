@@ -94,7 +94,7 @@ const projectsData = [
     processImages: [],
     processVideoEmbedIframe: `<iframe width="560" height="315" src="https://www.youtube.com/embed/m_Xu3_LOMHY?si=58VyAkd-DW3KfSG8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
     liveUrl: "#",
-    githubUrl: "https://github.com/Cizelle/Devians",
+    githubUrl: "https://github.com/Cizelle?tab=repositories",
     problemSolutionImpact: {
       problem:
         "Many learners lack access to personalized educational guidance, career planning tools, and mentorship opportunities especially those from underserved communities.",
