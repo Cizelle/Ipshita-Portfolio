@@ -65,15 +65,22 @@ const projectsData = [
     id: "filevault",
     title: "File Vault",
     shortDescription: "Secure link generator",
-    meta: "Python",
+    meta: "Python, Flask",
     type: "web",
     description: `File Vault allows users to upload a file, which then generates a unique download link that can only be used once. After the first successful download, the link becomes invalid, ensuring secure and time-sensitive file delivery.`,
     techStack: "Python Development",
     thumbnailLogo: "images/fileVault.png",
     heroImage: "images/fileVault.png",
-    processImages: [],
-    liveUrl: "#",
-    githubUrl: "https://github.com/Cizelle/FileVault",
+    processImages: [
+      "images/fileVault (4).png",
+      "images/fileVault (5).png",
+      "images/fileVault (6).png",
+      "images/fileVault (1).png",
+      "images/fileVault (3).png",
+      "images/fileVault (2).png",
+    ],
+    liveUrl: "https://file-vault-29rn.onrender.com",
+    githubUrl: "https://github.com/Cizelle/File-Vault",
     problemSolutionImpact: {
       problem:
         "Standard file-sharing links stay active indefinitely, leading to risks like unauthorized access, accidental reshares, or multiple unwanted downloads.",
@@ -156,6 +163,16 @@ document.addEventListener("DOMContentLoaded", () => {
         liveLink.textContent = "View Live";
         detailProjectLinks.appendChild(liveLink);
       }
+
+      if (project.apkUrl && project.apkUrl !== "#") {
+        const apkLink = document.createElement("a");
+        apkLink.href = project.apkUrl;
+        apkLink.target = "_blank";
+        apkLink.classList.add("button", "primary-button");
+        apkLink.textContent = "Download APK";
+        detailProjectLinks.appendChild(apkLink);
+      }
+
       if (project.githubUrl && project.githubUrl !== "#") {
         const githubLink = document.createElement("a");
         githubLink.href = project.githubUrl;
@@ -163,15 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
         githubLink.classList.add("button", "secondary-button");
         githubLink.textContent = "GitHub Repo";
         detailProjectLinks.appendChild(githubLink);
-      }
-
-      if (project.apkUrl && project.apkUrl !== "#") {
-        const apkLink = document.createElement("a");
-        apkLink.href = project.apkUrl;
-        apkLink.target = "_blank";
-        apkLink.classList.add("button", "secondary-button");
-        apkLink.textContent = "Download APK";
-        detailProjectLinks.appendChild(apkLink);
       }
 
       detailProjectProblemSolutionImpact.innerHTML = `
@@ -195,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         workingProcessContainer.appendChild(videoWrapper);
       } else {
         let imageContainer;
-        if (project.type === "app") {
+        if (project.type === "app" || project.id === "filevault") {
           imageContainer = document.createElement("div");
           imageContainer.className = "app-image-scroller";
         } else {
