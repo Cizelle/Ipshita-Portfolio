@@ -20,6 +20,8 @@ const projectsData = [
     ],
     liveUrl: "#",
     githubUrl: "https://github.com/Cizelle/NotesPlayy",
+    apkUrl:
+      "https://github.com/Cizelle/NotesPlayy/releases/download/v1.1/app-release.apk",
     problemSolutionImpact: {
       problem:
         "Users need a reliable and private way to store notes locally without cloud reliance, ensuring data security.",
@@ -161,6 +163,15 @@ document.addEventListener("DOMContentLoaded", () => {
         githubLink.classList.add("button", "secondary-button");
         githubLink.textContent = "GitHub Repo";
         detailProjectLinks.appendChild(githubLink);
+      }
+
+      if (project.apkUrl && project.apkUrl !== "#") {
+        const apkLink = document.createElement("a");
+        apkLink.href = project.apkUrl;
+        apkLink.target = "_blank";
+        apkLink.classList.add("button", "secondary-button");
+        apkLink.textContent = "Download APK";
+        detailProjectLinks.appendChild(apkLink);
       }
 
       detailProjectProblemSolutionImpact.innerHTML = `
