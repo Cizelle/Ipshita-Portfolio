@@ -1,5 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
   const workExperiences = [
+     {
+      id: "web-dev",
+      title: "Web Designer Internship",
+      company: "HCDS Technologies",
+      role: "Web Designer",
+      description: `
+    <p>During my role as a Web Designer, I contributed to building and designing some features for the main website for the company, focusing on creating an engaging and user-friendly interface. I was actively involved in both the design and development phases, ensuring visual appeal and functional performance.</p>
+    <p>Alongside internal projects, I worked directly with clients to understand their requirements through meetings and collaborative discussions. I translated their needs into functional web designs, delivering customized projects that aligned with their brand identity and goals.</p>
+    <p>This role allowed me to merge creativity with technical expertise, balancing aesthetic design principles with efficient, clean code practices.</p>
+`,
+skills: `
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Responsive Web Design</li>
+        <li>Git</li>
+        <li>GitHub</li>
+        <li>MongoDB</li>
+        <li>Client Communication</li>
+        <li>UI/UX Design Principles</li>
+    </ul>
+`,
+learnings: `
+    <ul>
+        <li>Gained hands-on experience in designing and developing responsive, visually appealing websites.</li>
+        <li>Improved skills in HTML, CSS, and JavaScript for creating interactive web elements.</li>
+        <li>Learned to collaborate effectively with clients, translating their ideas into functional designs.</li>
+        <li>Strengthened understanding of UI/UX principles to enhance user experience.</li>
+        <li>Applied version control best practices using Git and GitHub for team collaboration.</li>
+        <li>Explored basic database integration concepts using MongoDB for dynamic content management.</li>
+    </ul>
+`,
+
+      /*images: [
+        {
+          src: "images/cogno2.png",
+          alt: "Offer Letter",
+        },
+        { src: "images/cogno1.png", alt: "Completion Certificate" },
+      ],*/
+    },
+
     {
       id: "java-dev",
       title: "Java Developer Internship",
